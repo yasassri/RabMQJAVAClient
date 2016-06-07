@@ -5,24 +5,29 @@ import java.io.IOException;
 public class TopicSubscriber {
     private static final String EXCHANGE_NAME = "amq.topic";
 
+    // Set your Properties here
+    private static final String userName = "admin";
+    private static final String password = "admin";
+    private static final String host = "localhost";
+    private static final int amqpPort = 5672;
+
+    private static final String routingKey = "yasas2";
+    private static final String queueName2 = "yasas2";
+
     public static void main(String[] argv) throws Exception {
 
         ConnectionFactory factory = new ConnectionFactory();
         factory.setVirtualHost("/carbon");
-        factory.setUsername("admin");
-        factory.setPassword("admin");
-        factory.setHost("localhost");
-        factory.setPort(5672);
+        factory.setUsername(userName);
+        factory.setPassword(password);
+        factory.setHost(host);
+        factory.setPort(amqpPort);
         //factory.setUri("amqp://admin:admin@localhost/carbon?brokerlist='tcp://localhost:5672'");
         Connection connection = factory.newConnection();
         final Channel channel = connection.createChannel();
 
         channel.exchangeDeclare(EXCHANGE_NAME, "topic");
-        String routingKey = "YCQTEST3";
-        String queueName2 = "YCQTEST3";
         channel.queueDeclare(queueName2,true,false,false,null);
-
-//      String queueName2 = channel.queueDeclare().getQueue();
 
         System.out.println("TEMP NAME : " +queueName2);
         // Q Name , EXCHANGE, Routing Key

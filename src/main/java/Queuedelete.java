@@ -7,8 +7,7 @@ import java.io.IOException;
 
 public class Queuedelete {
 
-        private static int counter;
-        private static final String QUEUE_NAME = "DeadLetterChannel";
+        private static final String QUEUE_NAME = "queutodelete";
 
         public static void main(String[] argv) throws Exception {
 

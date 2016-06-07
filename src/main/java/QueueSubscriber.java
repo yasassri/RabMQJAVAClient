@@ -9,23 +9,32 @@ public class QueueSubscriber {
     private static int counter;
     private static final String EXCHANGE_NAME = "amq.direct";
 
+    // Set your Properties here
+    private static final String userName = "admin";
+    private static final String password = "admin";
+    private static final String host = "localhost";
+    private static final int amqpPort = 5672;
+
+    private static final String routingKey = "yasas";
+    private static final String queueName2 = "TEST";
+
+
+
     public static void main(String[] argv) throws Exception {
 
         ConnectionFactory factory = new ConnectionFactory();
         factory.setVirtualHost("/carbon");
-        factory.setUsername("user01");
-        factory.setPassword("admin");
-        factory.setHost("localhost");
-        factory.setPort(5672);
+        factory.setUsername(userName);
+        factory.setPassword(password);
+        factory.setHost(host);
+        factory.setPort(amqpPort);
         //factory.setUri("amqp://admin:admin@localhost/carbon?brokerlist='tcp://localhost:5672'");
         Connection connection = factory.newConnection();
         final Channel channel = connection.createChannel();
 
         channel.exchangeDeclare(EXCHANGE_NAME, "direct");
-        String routingKey = "TEST";
 
-        String queueName2 = "TEST";
-        channel.queueDeclare(queueName2,true,false,false,null);
+         channel.queueDeclare(queueName2,true,false,false,null);
 
 //      String queueName2 = channel.queueDeclare().getQueue();
 
