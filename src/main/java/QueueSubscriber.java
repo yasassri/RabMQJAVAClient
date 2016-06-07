@@ -16,7 +16,7 @@ public class QueueSubscriber {
     private static final int amqpPort = 5672;
 
     private static final String routingKey = "yasas";
-    private static final String queueName2 = "TEST";
+    private static final String queueName2 = "yasas";
 
 
 
